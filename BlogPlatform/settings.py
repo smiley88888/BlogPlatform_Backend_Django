@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'cacheops',
 ]
 
 MIDDLEWARE = [
@@ -139,4 +140,15 @@ from datetime import timedelta
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+# Configure cacheops for caching
+CACHEOPS = {
+    'myapp.*': {'ops': 'all', 'timeout': 300},  # Cache all queries for 300 seconds (5 minutes)
+}
+
+CACHEOPS_REDIS = {
+    'host': 'localhost',  # Redis server address
+    'port': 6379,         # Redis server port
+    'db': 1,              # Redis database index
 }
